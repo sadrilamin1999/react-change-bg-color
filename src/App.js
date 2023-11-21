@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { useRef } from "react";
 
-function App() {
+const App = () => {
+  const bgRef = useRef(null);
+
+  const changHandler = () => {
+    const r = Math.round(Math.random() * 255);
+    const g = Math.round(Math.random() * 255);
+    const b = Math.round(Math.random() * 255);
+    const a = Math.round(Math.random() * 255);
+    bgRef.current.style.backgroundColor = `rgba(${r},${g},${b},${a})`;
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div ref={bgRef} className="background">
+      <div>
+        <button onClick={changHandler} id="btn">
+          Change Color
+        </button>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
